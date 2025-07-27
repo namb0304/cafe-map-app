@@ -1,13 +1,10 @@
 <?php
-// --- 最終課題/includes/db_connect.php ---
+// --- 最終課題/includes/db_connect.php (変更なし) ---
 
-// データベース接続情報
-$host = "localhost";
-$user = "s2422051";
-$password = "MCB13eAR";
-$dbname = "s2422051";
+// まず、秘密情報が書かれた設定ファイルを読み込む
+require_once 'config.php';
 
-// PostgreSQLへの接続
-$dbconn = pg_connect("host=$host user=$user password=$password dbname=$dbname")
+// config.phpで定義した定数を使って、安全に接続する
+$dbconn = pg_connect("host=" . DB_HOST . " user=" . DB_USER . " password=" . DB_PASSWORD . " dbname=" . DB_NAME)
     or die('データベースに接続できませんでした: ' . pg_last_error());
 ?>

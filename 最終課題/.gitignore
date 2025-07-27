@@ -1,0 +1,6 @@
+
+# APIキーやパスワードを含む設定ファイルを無視する
+includes/config.php
+
+# OSが自動生成するファイル
+.DS_Store
