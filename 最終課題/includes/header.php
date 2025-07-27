@@ -1,5 +1,5 @@
 <?php
-// --- 最終課題/includes/header.php ---
+// --- 最終課題/includes/header.php (最終修正版) ---
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

@@ -2,6 +2,7 @@
 // --- 最終課題/login.php ---
 
 session_start();
+// ログイン済みの場合はメインページへリダイレクト
 if (isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
@@ -18,8 +19,8 @@ if (isset($_SESSION['user_id'])) {
     <div class="auth-page-wrapper">
         <div class="auth-container">
             <h1>おかえりなさい！</h1>
-            <p class="auth-subheading">ログインしてあなたの気分にあったカフェを見つけましょう</p>
-
+            <p class="auth-subheading">ログインしてマップの続きを始めましょう</p>
+            
             <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
                 <p class="message success">ユーザー登録が完了しました。ログインしてください。</p>
             <?php endif; ?>

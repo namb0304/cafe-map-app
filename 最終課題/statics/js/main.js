@@ -1,17 +1,19 @@
-// --- 最終課題/statics/js/main.js ---
+// --- 最終課題/statics/js/main.js (最終修正版) ---
 
-// このinitMap関数は、Google Maps APIのスクリプトから自動的に呼び出されます
+// この関数は、Google Maps APIの読み込みが完了したときに自動的に呼ばれます。
 function initMap() {
-    // --- 変数定義 ---
     const mapElement = document.getElementById('map');
-    if (!mapElement) return;
+    if (!mapElement) {
+        console.error("マップを描画するための div(#map) が見つかりません。");
+        return;
+    }
 
-    // 東京駅を中心に地図を初期化
+    // --- 変数定義 ---
     const map = new google.maps.Map(mapElement, {
         center: { lat: 35.6812, lng: 139.7671 },
         zoom: 13,
-        mapTypeControl: false, // 右上の「地図」「航空写真」ボタンを非表示
-        streetViewControl: false // ストリートビューの人形アイコンを非表示
+        mapTypeControl: false,
+        streetViewControl: false
     });
 
     const searchBtn = document.getElementById('search-this-area-btn');
@@ -19,12 +21,12 @@ function initMap() {
     let markers = []; // マーカーを管理するための配列
 
     // --- 関数定義 ---
-
-    // カフェデータを取得してマップとリストを更新する関数
     const fetchAndDisplayCafes = async () => {
         const bounds = map.getBounds();
-        const ne = bounds.getNorthEast(); // 北東の座標
-        const sw = bounds.getSouthWest(); // 南西の座標
+        if (!bounds) return; // マップが初期化されていない場合は何もしない
+
+        const ne = bounds.getNorthEast();
+        const sw = bounds.getSouthWest();
 
         searchBtn.textContent = '検索中...';
         searchBtn.disabled = true;
@@ -46,9 +48,7 @@ function initMap() {
         }
     };
 
-    // マップとリストの表示を更新する関数
     const updateMapAndList = (cafes) => {
-        // 既存のマーカーを全て削除
         markers.forEach(marker => marker.setMap(null));
         markers = [];
         cafeListContent.innerHTML = '';
@@ -60,23 +60,17 @@ function initMap() {
 
         cafes.forEach(cafe => {
             if (cafe.latitude && cafe.longitude) {
-                // マーカーを作成
                 const marker = new google.maps.Marker({
                     position: { lat: parseFloat(cafe.latitude), lng: parseFloat(cafe.longitude) },
                     map: map,
                     title: cafe.name
                 });
-
-                // 情報ウィンドウ（ポップアップ）を作成
                 const infowindow = new google.maps.InfoWindow({
                     content: `<b>${cafe.name}</b><br>${cafe.address}`
                 });
-
-                // マーカーがクリックされたら情報ウィンドウを開く
                 marker.addListener('click', () => {
                     infowindow.open(map, marker);
                 });
-
                 markers.push(marker);
             }
             const card = document.createElement('div');
@@ -87,7 +81,6 @@ function initMap() {
     };
 
     // --- イベントリスナー ---
-    // マップの表示範囲が変わって操作が止まったら（idle）、再検索ボタンを表示
     map.addListener('idle', () => {
         searchBtn.style.display = 'block';
     });
@@ -96,10 +89,7 @@ function initMap() {
     // --- 初期化 ---
     navigator.geolocation.getCurrentPosition(
         (position) => {
-            const pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
+            const pos = { lat: position.coords.latitude, lng: position.coords.longitude };
             map.setCenter(pos);
             map.setZoom(15);
             new google.maps.Marker({
