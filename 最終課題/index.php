@@ -17,7 +17,7 @@ if ($cafes_data === false) $cafes_data = [];
 
 // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 // ★ ここに、あなたが取得したGoogle Maps APIキーを貼り付けてください ★
-$google_maps_api_key = "AIzaSyA4fSPYBmZmQZpYI-KusDkJeysXFAUuMQw";
+$google_maps_api_key = "YOUR_API_KEY_HERE";
 // ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 ?>
 <!DOCTYPE html>
