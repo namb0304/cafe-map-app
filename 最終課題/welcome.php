@@ -1,0 +1,80 @@
+<?php
+// --- 最終課題/welcome.php (新規作成) ---
+session_start();
+// もしログイン済みなら、メインのマップページへリダイレクト
+if (isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Explorer - あなたにぴったりのカフェを見つけよう</title>
+    <link rel="stylesheet" href="statics/css/style.css">
+</head>
+<body class="landing-page">
+
+    <header class="page-header landing-header">
+        <div class="header-content">
+            <a href="welcome.php" class="header-logo">Cafe Explorer</a>
+            <nav>
+                <a href="login.php" class="btn btn-secondary">ログイン</a>
+                <a href="signup.php" class="btn btn-primary">新規登録</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>いつもの一杯を、最高の場所で。</h1>
+                <p class="subtitle">リアルタイムの混雑情報で、あなたの「今」にぴったりのカフェが見つかる。</p>
+                <a href="signup.php" class="btn btn-primary btn-large">今すぐ無料で始める</a>
+            </div>
+        </section>
+
+        <!-- 機能紹介セクション -->
+        <section class="features">
+            <div class="container">
+                <h2>Cafe Explorerでできること</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <img src="https://placehold.co/600x400/EFEFEF/333333?text=現在地マップ" alt="現在地マップのイメージ画像">
+                        <h3>現在地から探す</h3>
+                        <p>地図を開けば、あなたの周りにあるカフェを瞬時に表示。もうカフェ探しで迷いません。</p>
+                    </div>
+                    <div class="feature-card">
+                        <img src="https://placehold.co/600x400/A9D5A5/FFFFFF?text=混雑状況" alt="混雑状況のイメージ画像">
+                        <h3>リアルタイム混雑度</h3>
+                        <p>お店に行く前に、みんなの投稿で今の混雑状況をチェック。「満席で入れない」をなくします。</p>
+                    </div>
+                    <div class="feature-card">
+                        <img src="https://placehold.co/600x400/FFC107/FFFFFF?text=レビュー" alt="レビューのイメージ画像">
+                        <h3>リアルな口コミ</h3>
+                        <p>「ここのラテが最高！」「作業するならこの席」など、ユーザーのリアルな声で、最高のカフェ体験を。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- コールトゥアクションセクション -->
+        <section class="cta">
+            <div class="container">
+                <h2>さあ、あなただけのカフェ時間を見つけにいきましょう。</h2>
+                <a href="signup.php" class="btn btn-primary btn-large">アカウントを作成する</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="landing-footer">
+        <div class="container">
+            <p>&copy; 2025 Cafe Explorer. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

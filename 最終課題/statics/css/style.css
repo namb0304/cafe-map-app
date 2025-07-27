@@ -1,0 +1,304 @@
+/* --- 最終課題/statics/css/style.css --- */
+
+/* ======== 基本スタイル ======== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+a { 
+    color: #007bff; 
+    text-decoration: none; 
+}
+a:hover { 
+    text-decoration: underline; 
+}
+
+/* ======== ヘッダー ======== */
+.page-header {
+    background-color: #fff; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 10px 20px; 
+    z-index: 10;
+    flex-shrink: 0;
+}
+.header-content {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+.header-logo { font-size: 1.2em; font-weight: bold; color: #333; }
+.header-content nav a { margin-left: 20px; }
+.header-content nav span { margin-right: 20px; color: #555; }
+
+
+.landing-page {
+    overflow-y: auto; /* 概要ページはスクロールを許可 */
+}
+
+.landing-header {
+    background-color: rgba(255, 255, 255, 0.9);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* 汎用ボタンスタイル */
+.btn {
+    padding: 8px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    color: white;
+}
+.btn-secondary {
+    background-color: transparent;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+.btn-secondary:hover {
+    background-color: #007bff;
+    color: white;
+}
+.btn-large {
+    padding: 12px 25px;
+    font-size: 1.1em;
+}
+
+
+/* ヒーローセクション */
+.hero {
+    height: 70vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 0.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-content .subtitle {
+    font-size: 1.4em;
+    max-width: 600px;
+    margin: 0 auto 1.5em auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+
+/* 機能紹介セクション */
+.features {
+    padding: 80px 20px;
+    background-color: #f8f9fa;
+}
+
+.features .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5em;
+    margin-bottom: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.feature-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+.feature-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.feature-card h3 {
+    font-size: 1.5em;
+    margin: 20px 25px 10px 25px;
+}
+
+.feature-card p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 0 25px 25px 25px;
+    color: #555;
+}
+
+/* コールトゥアクションセクション */
+.cta {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+}
+
+.cta h2 {
+    font-size: 2.2em;
+    margin-bottom: 40px;
+}
+.cta .btn-primary {
+    background-color: #fff;
+    color: #007bff;
+}
+.cta .btn-primary:hover {
+    background-color: #eee;
+}
+
+
+/* フッター */
+.landing-footer {
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #343a40;
+    color: #aaa;
+}
+.landing-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ======== ログイン・新規登録ページ ======== */
+.auth-page-wrapper {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-top: 5px solid #007bff;
+}
+
+.auth-container h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 2em;
+    color: #333;
+}
+
+.auth-container .auth-subheading {
+    margin-bottom: 30px;
+    color: #777;
+}
+
+.form-area { 
+    text-align: left;
+}
+.form-group { 
+    margin-bottom: 20px; 
+}
+.form-group label { 
+    display: block; 
+    margin-bottom: 8px; 
+    font-weight: bold;
+    color: #555;
+}
+.form-group input {
+    width: 100%; 
+    padding: 12px 15px; 
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.auth-container button[type="submit"] {
+    width: 100%; 
+    padding: 12px; 
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: #007bff; 
+    color: white; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.2s;
+}
+.auth-container button[type="submit"]:hover { 
+    background-color: #0056b3; 
+}
+.auth-link { 
+    text-align: center; 
+    margin-top: 25px; 
+    color: #555; 
+}
+.message { 
+    text-align: center; 
+    padding: 10px; 
+    border-radius: 5px; 
+    margin-bottom: 15px; 
+}
+.message.success { 
+    background-color: #d4edda; 
+    color: #155724; 
+}
+.message.error { 
+    background-color: #f8d7da; 
+    color: #721c24; 
+}
+
+/* ======== メインのマップページ ======== */
+#map {
+    height: 100%;
+    width: 100%;
+    flex-grow: 1; /* ヘッダー以外の残りの高さをすべて使う */
+}
