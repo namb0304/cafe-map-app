@@ -1,2 +1,2 @@
-# 最初に welcome.php を探し、なければ index.php を表示する
-DirectoryIndex welcome.php index.php
+# 最初に welcome.php を探し、なければ login.php を表示する
+DirectoryIndex welcome.php login.php
