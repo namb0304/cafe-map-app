@@ -148,3 +148,44 @@ a:hover {
     font-weight: bold;
     cursor: pointer;
 }
+
+
+/* 詳細ページ用のスタイル */
+.container {
+    max-width: 800px; margin: 20px auto; padding: 20px;
+    background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.back-link { display: inline-block; margin-bottom: 20px; }
+.cafe-header { text-align: center; margin-bottom: 20px; }
+.cafe-header h1 { margin: 0 0 10px 0; }
+.cafe-header .address { color: #666; }
+
+/* 公式サイトボタン */
+.official-site-btn {
+    display: inline-block; margin-top: 15px; padding: 10px 20px;
+    background-color: #17a2b8; color: white; border-radius: 5px;
+    text-decoration: none; font-weight: bold; transition: background-color 0.2s;
+}
+.official-site-btn:hover { background-color: #138496; color: white; }
+
+/* レビュー投稿フォーム */
+.review-form-section { background-color: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #eee; }
+.review-form-section h2 { margin-top: 0; }
+.review-form-section select { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+.rating-selector { display: inline-block; direction: rtl; border: none; padding: 0; }
+.rating-selector input[type="radio"] { display: none; }
+.rating-selector label { font-size: 2em; color: #ddd; cursor: pointer; transition: color 0.2s; }
+.rating-selector input[type="radio"]:checked ~ label,
+.rating-selector label:hover,
+.rating-selector label:hover ~ label { color: #ffc107; }
+
+/* レビュー一覧 */
+.reviews-section h2 { margin-top: 30px; }
+.review-card { border-bottom: 1px solid #eee; padding: 20px 0; }
+.review-card:last-child { border-bottom: none; }
+.review-card .rating { color: #ffc107; font-size: 1.2em; }
+.review-card .comment-text { margin: 10px 0; }
+.review-card .review-date { font-size: 0.85em; color: #6c757d; text-align: right; }
+
+/* マップのポップアップ */
+.map-popup a { display: block; margin-top: 5px; }
