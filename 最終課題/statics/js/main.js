@@ -73,52 +73,34 @@ function initMap() {
 
         // 2. 新しいカフェ情報でマーカーとリストを作成
         cafes.forEach(cafe => {
-            // 緯度経度がないデータはスキップ
             if (!cafe.latitude || !cafe.longitude) return;
 
-            // マーカーを作成
             const marker = new google.maps.Marker({
                 position: { lat: parseFloat(cafe.latitude), lng: parseFloat(cafe.longitude) },
                 map: map,
                 title: cafe.name,
-                animation: google.maps.Animation.DROP // マーカーが上から落ちてくるアニメーション
+                animation: google.maps.Animation.DROP
             });
 
-            // ================================================================
-            // ★★★ ここがピンのクリックイベントとボタンを作成する核心部分 ★★★
-            // ================================================================
-            // 吹き出し(InfoWindow)の中身となるHTML文字列を作成
             let popupContent = `<div class="map-popup"><b>${cafe.name}</b>`;
-            
-            // 詳細ページへのリンクボタン
             popupContent += `<a href="cafe_details.php?id=${cafe.id}">詳細とレビューを見る</a>`;
-            
-            // 公式サイトURLがDBにあれば、公式サイトへのリンクボタンも追加
             if (cafe.url) { 
                 popupContent += `<a href="${cafe.url}" target="_blank" rel="noopener noreferrer">公式サイト</a>`;
             }
             popupContent += `</div>`;
             
-            // 吹き出し(InfoWindow)オブジェクトを作成
             const infowindow = new google.maps.InfoWindow({ content: popupContent });
 
-            // マーカーに「クリックされたら」というイベントを追加
             marker.addListener('click', () => {
-                // もし他の吹き出しが開いていたら、それを閉じる
                 if (currentInfoWindow) {
                     currentInfoWindow.close();
                 }
-                // 新しい吹き出しを開く
                 infowindow.open(map, marker);
-                // 開いた吹き出しを「現在開いているもの」として記録
                 currentInfoWindow = infowindow;
             });
-            // ================================================================
 
-            // 作成したマーカーを管理用配列に追加
             markers.push(marker);
 
-            // 右側のリストにもカフェ情報をカードとして追加
             const card = document.createElement('div');
             card.className = 'cafe-card';
             card.innerHTML = `<h2><a href="cafe_details.php?id=${cafe.id}">${cafe.name}</a></h2><p class="address">${cafe.address}</p>`;
@@ -139,17 +121,30 @@ function initMap() {
                 const pos = { lat: position.coords.latitude, lng: position.coords.longitude };
                 map.setCenter(pos);
                 map.setZoom(15);
-                new google.maps.Marker({ position: pos, map: map, title: "あなたの現在地" });
-                fetchAndDisplayCafes(); // 現在地取得後、自動で周辺のカフェを検索
+                
+                // ▼▼▼ ここを青色のピンに変更しました ▼▼▼
+                new google.maps.Marker({ 
+                    position: pos, 
+                    map: map, 
+                    title: "あなたの現在地",
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE, // 円形
+                        scale: 8, // 大きさ
+                        fillColor: "#e95423ff", // 塗りつぶしの色
+                        fillOpacity: 1,
+                        strokeColor: "white", // 枠線の色
+                        strokeWeight: 2 // 枠線の太さ
+                    }
+                });
+                
+                fetchAndDisplayCafes();
             },
             () => {
-                // 現在地取得に失敗した場合は、初期位置（東京駅）で検索
                 console.warn("現在地の取得に失敗しました。初期位置で検索します。");
                 fetchAndDisplayCafes();
             }
         );
     } else {
-        // ブラウザが位置情報に対応していない場合も、初期位置で検索
         console.warn("お使いのブラウザは位置情報機能に対応していません。");
         fetchAndDisplayCafes();
     }

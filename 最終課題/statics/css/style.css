@@ -190,3 +190,40 @@ a:hover {
 
 /* マップのポップアップ */
 .map-popup a { display: block; margin-top: 5px; }
+
+/* ======== AI検索ボックス ======== */
+.ai-search-box {
+    padding: 15px;
+    background-color: #e9ecef;
+    border-bottom: 1px solid #ddd;
+}
+#ai-search-form {
+    display: flex;
+}
+#ai-prompt {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    font-size: 1em;
+}
+#ai-search-form button {
+    padding: 0 15px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* AIの検索結果タイトル */
+.ai-result-title {
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    padding: 10px;
+    background-color: #e7f3ff;
+    border-radius: 5px;
+    margin: 0 0 10px 0;
+}
