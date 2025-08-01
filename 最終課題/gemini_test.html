@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Gemini API 動作確認テスト</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        #apiKey { width: 100%; padding: 8px; margin-bottom: 10px; }
+        #prompt { width: 100%; padding: 8px; margin-bottom: 10px; }
+        #response { margin-top: 20px; padding: 15px; background-color: #f0f0f0; border-radius: 5px; min-height: 50px; white-space: pre-wrap; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Gemini API 動作確認テスト</h1>
+    <p>Google AI Studioで取得したAPIキーを貼り付けて、「AIに質問」ボタンを押してください。</p>
+
+    <input type="text" id="apiKey" placeholder="ここにGemini APIキーを貼り付けます">
+    <input type="text" id="prompt" value="AIの仕組みを30文字程度で簡単に教えて。">
+    <button id="askButton">AIに質問</button>
+
+    <h2>AIからの応答:</h2>
+    <div id="response">ここに結果が表示されます...</div>
+
+    <!-- Googleの公式ライブラリを直接読み込みます -->
+    <script type="module">
+        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+        const askButton = document.getElementById('askButton');
+        const apiKeyInput = document.getElementById('apiKey');
+        const promptInput = document.getElementById('prompt');
+        const responseDiv = document.getElementById('response');
+
+        askButton.addEventListener('click', async () => {
+            const apiKey = apiKeyInput.value;
+            const prompt = promptInput.value;
+
+            if (!apiKey) {
+                responseDiv.innerHTML = '<span class="error">エラー: APIキーを入力してください。</span>';
+                return;
+            }
+
+            try {
+                responseDiv.textContent = 'AIが考えています...';
+                
+                // APIクライアントを初期化
+                const genAI = new GoogleGenerativeAI(apiKey);
+                const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+
+                // AIにリクエストを送信
+                const result = await model.generateContent(prompt);
+                const response = await result.response;
+                const text = response.text();
+
+                // 結果を表示
+                responseDiv.textContent = text;
+
+            } catch (error) {
+                console.error(error);
+                responseDiv.innerHTML = `<span class="error">エラーが発生しました。<br>${error.toString()}</span>`;
+            }
+        });
+    </script>
+
+</body>
+</html>
