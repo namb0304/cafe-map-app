@@ -103,6 +103,7 @@ a:hover {
 }
 #map-container {
     width: 70%;
+    height: 100%;
     position: relative; /* ボタンを配置するため */
 }
 #map {
